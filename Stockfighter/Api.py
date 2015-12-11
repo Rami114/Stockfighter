@@ -317,7 +317,7 @@ class StockFighterApi:
 #
 
 
-class StockType(Enum):
+class OrderTypes(Enum):
     limit = 'limit'
     market = 'market'
     fok = 'fill-or-kill'
