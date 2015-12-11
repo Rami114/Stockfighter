@@ -11,7 +11,6 @@ It provides functions to interact with the Stock as well as the GM APIs.
 Note: these are the versions this library was tested with. It's possible using older versions is compatible.
 
 * python: 3.4.3+
-* numpy: 1.10.1+
 * requests: 2.8.1+
 * ws4py: 0.3.4+
 
