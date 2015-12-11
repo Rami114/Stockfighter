@@ -17,7 +17,7 @@ Note: these are the versions this library was tested with. It's possible using o
 
 ## Usage
 
-### Initalising the API
+### Initialising the API
 
 The api is initialised using your api key and - optionally - a python logging level. 
 
@@ -34,7 +34,7 @@ api = StockFighterApi(api_key, log_level)
 
 ### On Authentication
 
-The API will pass your api_key along where needed. There is no need for the user to keep track of this.
+The API will pass your api key along where needed. There is no need for you to keep track of this.
 
 ### On statefulness 
 
