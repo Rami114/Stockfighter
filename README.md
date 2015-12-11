@@ -140,7 +140,7 @@ price = 1000 # this is actually $10.00!! The API ignores the decimal
 quantity = 5
 direction = 'buy' # use 'sell' to sell, obviously
 order_type = OrderTypes.market.value
-json = stock_order(venue, my_account, target_stock, price, quantity, direction, order_type)
+json = api.stock_order(venue, my_account, target_stock, price, quantity, direction, order_type)
 ```
 
 Note on order types: the API lib comes with a small Enum class called OrderTypes which allows easy reference for orders:
