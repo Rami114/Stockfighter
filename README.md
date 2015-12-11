@@ -85,7 +85,7 @@ json = api.venue_stocks(venue)
 See https://starfighter.readme.io/docs/list-stocks-on-venue for responses and more info.
 
 ### account_orders(venue, account_id):
-R all the orders placed by your account.
+Returns all the orders placed by your account.
 
 ``` python
 venue = "ABCD"
@@ -108,7 +108,7 @@ json = api.account_stock_orders(venue, my_account, target_stock)
 See https://starfighter.readme.io/docs/status-for-all-orders-in-a-stock for responses and more info.
 
 ### stock_orderbook(venue, stock)
-
+Returns an anonimised view of the ask and bid status of a stock, i.e. the orderbook. 
 
 ``` python
 venue = "ABCD"
@@ -181,7 +181,7 @@ See https://starfighter.readme.io/docs/cancel-an-order for responses and more in
 
 ## Websocket calls
 ### A note on callbacks
-If you fail to provide a callback function the default message handler will log (level = debug) the raw message, as well as a pretty-printed version of the actual message (level = info).
+If you fail to provide a callback function the default message handler will log the raw message (level = debug), as well as a pretty-printed version of the actual JSON (level = info).
 
 Your callback function must have the following signature:
 ```python
