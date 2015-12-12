@@ -1,8 +1,6 @@
-from enum import Enum
 import requests
 import logging
 import json
-import pprint
 from ws4py.client.threadedclient import WebSocketClient
 #
 # This is the minimum API for Stockfighter
@@ -167,7 +165,7 @@ class StockFighterApi:
                     if m.is_text:
                         self.log.debug("Received text message %s" % m.data)
                         msg = json.loads(m.data.decode('utf-8'))
-                        self.log.info(pprint.pprint(msg))
+                        self.log.info(msg)
                 except ValueError as e:
                     self.log.error("Caught exception in socket message: %s" % e)
                     pass
@@ -311,14 +309,3 @@ class StockFighterApi:
             return msg
         except ValueError as e:
             return {'error': e, 'raw_content': response.content}
-
-#
-# This is purely a helper class to assist the calling of stock orders
-#
-
-
-class OrderTypes(Enum):
-    limit = 'limit'
-    market = 'market'
-    fok = 'fill-or-kill'
-    ioc = 'immediate-or-cancel'
