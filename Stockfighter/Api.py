@@ -138,16 +138,16 @@ class StockFighterApi:
     #
 
     def stock_ticker_socket(self, venue, stock, account_id, callback=None):
-        return self.ApiSocket(venue, stock=stock, account_id=account_id, callback=callback)
+        return self.ApiSocket(venue, stock=stock, account_id=account_id, callback=callback, log_level = self.log.getEffectiveLevel())
 
     def tickertape_socket(self, venue, account_id, callback=None):
-        return self.ApiSocket(venue, account_id=account_id, callback=callback)
+        return self.ApiSocket(venue, account_id=account_id, callback=callback, log_level = self.log.getEffectiveLevel())
 
     def stock_execution_socket(self, venue, stock, account_id, callback=None):
-        return self.ApiSocket(venue, socket_type='executions', stock=stock, account_id=account_id, callback=callback)
+        return self.ApiSocket(venue, socket_type='executions', stock=stock, account_id=account_id, callback=callback, log_level = self.log.getEffectiveLevel())
 
     def executions_socket(self, venue, account_id, callback=None):
-        return self.ApiSocket(venue, socket_type='executions', account_id=account_id, callback=callback)
+        return self.ApiSocket(venue, socket_type='executions', account_id=account_id, callback=callback, log_level = self.log.getEffectiveLevel())
 
     class ApiSocket:
 
@@ -175,15 +175,22 @@ class StockFighterApi:
                      socket_type='tickertape',
                      stock=None,
                      account_id=None,
-                     callback=None):
+                     callback=None,
+                     log_level=logging.INFO,
+                     log_format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'):
             self.log = logging.getLogger(self.__class__.__name__)
+            formatter = logging.Formatter(log_format)
+            ch = logging.StreamHandler()
+            ch.setFormatter(formatter)
+            self.log.addHandler(ch)
+            self.log.setLevel(log_level)
             base_uri = 'wss://api.stockfighter.io/ob/api'
             uri = "%s/ws/%s/venues/%s/%s" % (base_uri, account_id, venue, socket_type)
             if stock:
                 uri += "/stocks/%s" % stock
             self.log.debug("Creating socket with url %s" % uri)
             self.socket = self.Socket(uri)
-            self.socket.log = logging.getLogger(self.socket.__class__.__name__)
+            self.socket.log = self.log
             if callback:
                 self.socket.received_message = callback
             self.socket.connect()
