@@ -239,6 +239,7 @@ Please note that these calls are *not* documented on the Stockfighter documentat
 
 ### gm_start(level_id)
 Starts a new level, based on the name/id. Note that the API will resume a level instead if it's already running.
+*Update*: whilst the game will try to resume a running game, if the servers are under load it will actually spawn new instances. Do not spam this call!
 
 ```python
 level_id = 'the_name_of_my_level'
@@ -327,7 +328,9 @@ The JSON returned for a succesful call looks like this:
 ```
 
 ### gm_resume(instance_id)
-Resumes a running level instance. Note: if you're not sure just call start instead and it will auto-resume. Same usage as start.
+Resumes a running level instance. Same usage as start.
+
+*Note*: this is now preferred for resuming a level you know is running, over trying a start (which may end up with you having 2 instances server side).
 
 ### Other calls
 There are several other API and GM calls in the library which aren't explicitly documented here. Some may be useful for debugging purposes, but that is left as an exercise to the reader.
