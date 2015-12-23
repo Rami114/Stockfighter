@@ -192,7 +192,7 @@ venue = "ABCD"
 target_stock = "TICKER01"
 my_account = "ABCDTRADER09"
 # This returns a WebSocketClient object which is already actively listening
-my_socket = stock_ticker_socket(venue, target_stock, my_account)
+my_socket = api.stock_ticker_socket(venue, target_stock, my_account)
 ```
 
 See https://starfighter.readme.io/docs/quotes-ticker-tape-websocket for responses and more info.
@@ -205,7 +205,7 @@ venue = "ABCD"
 target_stock = "TICKER01"
 my_account = "ABCDTRADER09"
 # This returns a WebSocketClient object which is already actively listening
-my_socket = stock_execution_socket(venue, target_stock, my_account)
+my_socket = api.stock_execution_socket(venue, target_stock, my_account)
 ```
 
 See https://starfighter.readme.io/docs/executions-fills-websocket  for responses and more info.
@@ -217,7 +217,7 @@ Subscribes to the tickertape socket for all stocks in the venue, for a given acc
 venue = "ABCD"
 my_account = "ABCDTRADER09"
 # This returns a WebSocketClient object which is already actively listening
-my_socket = stock_ticker_socket(venue, my_account)
+my_socket = api.tickertape_socket(venue, my_account)
 ```
 
 See https://starfighter.readme.io/docs/quotes-ticker-tape-websocket for responses and more info.
@@ -229,7 +229,7 @@ Subscribes to the executions socket for all stocks in the venue, for a given acc
 venue = "ABCD"
 my_account = "ABCDTRADER09"
 # This returns a WebSocketClient object which is already actively listening
-my_socket = stock_ticker_socket(venue, my_account)
+my_socket = api.executions_socket(venue, my_account)
 ```
 
 See https://starfighter.readme.io/docs/executions-fills-websocket  for responses and more info.
